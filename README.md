@@ -1,9 +1,10 @@
+<!--
 ## Hi there 👋
 ## 🔭 I’m currently working on building this site.
 
 <img src="Wells Government Equipment and Supply Logo.png" alt="Wells Government Equipment and Supply Logo" style="max-width: 300px; height: auto;">
 
-<!--
+
 **WellsGovSupply/WellsGovSupply** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
 Here are some ideas to get you started:
