@@ -202,7 +202,6 @@
     <h3>Contact Us</h3>
     <p>Email: wellsgovernmentequipmentandsupply@outlook.com</p>
     <p>Phone: (734) 778-0687</p>
-    <p>Total Visitors: <span id="visitor-count">—</span></p>
   </div>
 
   <footer style="text-align: center; font-size: 0.9em; padding: 1em 0; background-color: #f5f5f5;">
@@ -210,30 +209,5 @@
     <p>Registered in the State of Florida · Veteran-Owned Small Business</p>
   </footer>
 
-  <script>
-    const counterEl = document.getElementById('visitor-count');
-    fetch('https://api.countapi.xyz/hit/wells-gov-supply/visits')
-      .then(res => res.json())
-      .then(data => {
-        counterEl.innerText = data.value;
-      })
-      .catch(() => {
-        counterEl.innerText = 'N/A';
-      });
-  </script>
-
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
