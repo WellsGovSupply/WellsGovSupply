@@ -16,48 +16,66 @@
       padding: 20px;
       background-color: #ffffff;
     }
+
     .logo-bordered {
       max-width: 200px;
       height: auto;
-      /* border: 4px solid #2c3e50; */ /*Removed*/
-      /* border-radius: 8px; */ /*Removed*/
       padding: 5px;
       background-color: #fff;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       margin-bottom: 10px;
     }
-.logo-bordered:hover {
+
+    .logo-bordered:hover {
       transform: scale(1.05);
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     }
-.info-icon {
-  margin-left: 8px;
-  cursor: help;
-  font-size: 1em;
-  color: #2c3e50;
-}
+
     .center-title {
       font-size: 1.8em;
       margin: 0;
       color: #2c3e50;
     }
-details {
-  margin-bottom: 1em;
-  background-color: #ffffff;
-  padding: 10px;
-  border-radius: 6px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
 
-summary {
-  font-weight: bold;
-  cursor: pointer;
-  color: #2c3e50;
-}
+    .launch-banner {
+      margin-top: 8px;
+      font-size: 1.1em;
+      color: #c0392b;
+    }
 
-summary:hover {
-  text-decoration: underline;
-}
+    .notify-button {
+      margin-top: 12px;
+      padding: 10px 20px;
+      font-size: 0.9em;
+      color: #fff;
+      background-color: #c0392b;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .notify-button:hover {
+      background-color: #922b21;
+    }
+
+    details {
+      margin-bottom: 1em;
+      background-color: #ffffff;
+      padding: 10px;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    summary {
+      font-weight: bold;
+      cursor: pointer;
+      color: #2c3e50;
+    }
+
+    summary:hover {
+      text-decoration: underline;
+    }
 
     @media (max-width: 600px) {
       .logo-bordered {
@@ -69,86 +87,145 @@ summary:hover {
       }
     }
   </style>
-
 </head>
 <body>
 
-<div class="header">
-  <img src="Wells Gov Equip Sup Logo 4.png" alt="Company logo with shield and miltary vehicles." class="logo-bordered">
-  <h1 class="center-title">Wells Government Equipment and Supply</h1>
-</div>
-  
-    <h2>
-  <img src="Mini Icon Wells Gov.png" alt="Mini badge logo for Wells Government Equipment and Supply" style="width:24px; height:24px; vertical-align:middle; margin-right:8px;">
-  Mission-Ready Supply Solutions for Federal Buyers
-</h2>
+  <div class="header">
+    <img src="Wells Gov Equip Sup Logo 4.png"
+         alt="Company logo with shield and military vehicles."
+         class="logo-bordered">
+    <h1 class="center-title">Wells Government Equipment and Supply</h1>
+    <div class="launch-banner">
+      Officially accepting contracts October 2026 (1Q FY27)
+    </div>
+    <button
+      class="notify-button"
+      onclick="window.location.href='mailto:wellsgovernmentequipmentandsupply@outlook.com?subject=Notify%20Me%20When%20You%20Launch';">
+      Notify Me When We Launch
+    </button>
+  </div>
 
-<p>Proudly supporting U.S. government agencies, military logistics teams, and prime contractors with compliant, veteran-operated procurement services. Our focus: GPC micro-purchases, Army support, and pass-through subcontracting.</p>
+  <h2>
+    <img src="Mini Icon Wells Gov.png"
+         alt="Mini badge logo for Wells Government Equipment and Supply"
+         style="width:24px; height:24px; vertical-align:middle; margin-right:8px;">
+    Mission-Ready Supply Solutions for Federal Buyers
+  </h2>
 
- <div class="section">
-  <h3>About Us</h3>
-  <p>Wells Government Equipment and Supply LLC is a veteran-owned small business specializing in the sourcing, packaging, and delivery of industrial hardware and mission-critical supplies to federal agencies. With over 36 years of federal procurement experience, we bring deep knowledge of acquisition workflows, compliance standards, and supply chain coordination. Our focus is on reliability, responsiveness, and operational precision—making us a trusted partner for GPC purchases, Army logistics, and subcontracting support.</p>
-</div>
+  <p>
+    Proudly supporting U.S. government agencies, military logistics teams, and prime contractors with compliant,
+    veteran-operated procurement services. Our focus: GPC micro-purchases, Army support, and pass-through subcontracting.
+  </p>
 
-<div class="section">
-  <h3>Our Services</h3>
+  <div class="section">
+    <h3>About Us</h3>
+    <p>
+      Wells Government Equipment and Supply LLC is a veteran-owned small business specializing in the sourcing,
+      packaging, and delivery of industrial hardware and mission-critical supplies to federal agencies. With over
+      36 years of federal procurement experience, we bring deep knowledge of acquisition workflows, compliance
+      standards, and supply chain coordination. Our focus is on reliability, responsiveness, and operational
+      precision—making us a trusted partner for GPC purchases, Army logistics, and subcontracting support.
+    </p>
+  </div>
 
-  <details>
-    <summary>Industrial Hardware Supply</summary>
-    <p>We source and deliver high-quality industrial components including bolts, washers, springs, gaskets, control knobs, and sealing devices. Our inventory aligns with federal PSCs and NAICS codes, supporting mission-critical supply needs.</p>
-  </details>
+  <div class="section">
+    <h3>Our Services</h3>
 
-  <details>
-    <summary>Custom Packaging & Crating</summary>
-    <p>We provide mission-specific packaging solutions tailored to government requirements, including labeled kits and crated bulk shipments with MIL-STD compliant documentation.</p>
-  </details>
+    <details>
+      <summary>Industrial Hardware Supply</summary>
+      <p>We source and deliver high-quality industrial components including bolts, washers, springs, gaskets, control
+      knobs, and sealing devices. Our inventory aligns with federal PSCs and NAICS codes, supporting mission-critical
+      supply needs.</p>
+    </details>
 
-  <details>
-    <summary>GPC Micro-Purchase Fulfillment</summary>
-    <p>Fast, compliant fulfillment of Government Purchase Card orders with accurate invoicing, responsive delivery, and full SAM.gov registration support.</p>
-  </details>
+    <details>
+      <summary>Custom Packaging & Crating</summary>
+      <p>We provide mission-specific packaging solutions tailored to government requirements, including labeled kits
+      and crated bulk shipments with MIL-STD compliant documentation.</p>
+    </details>
 
-  <details>
-    <summary>Army & DoD Logistics Support</summary>
-    <p>Tailored sourcing and delivery for military operations, with packaging and documentation aligned to DFARS requirements and mission-specific logistics needs.</p>
-  </details>
+    <details>
+      <summary>GPC Micro-Purchase Fulfillment</summary>
+      <p>Fast, compliant fulfillment of Government Purchase Card orders with accurate invoicing, responsive delivery,
+      and full SAM.gov registration support.</p>
+    </details>
 
-  <details>
-    <summary>Pass-Through Subcontracting</summary>
-    <p>Support for prime contractors through compliant sourcing, documentation, and delivery under small business participation goals. We help primes meet FAR and DFARS obligations with precision.</p>
-  </details>
+    <details>
+      <summary>Army & DoD Logistics Support</summary>
+      <p>Tailored sourcing and delivery for military operations, with packaging and documentation aligned to DFARS
+      requirements and mission-specific logistics needs.</p>
+    </details>
 
-  <details>
-    <summary>Compliance Documentation Support</summary>
-    <p>Assistance with SAM.gov registration, banking onboarding, ownership statements, and capability narratives. We help small businesses and subcontractors get federal-ready with clarity and speed.</p>
-  </details>
-</div>
+    <details>
+      <summary>Pass-Through Subcontracting</summary>
+      <p>Support for prime contractors through compliant sourcing, documentation, and delivery under small business
+      participation goals. We help primes meet FAR and DFARS obligations with precision.</p>
+    </details>
 
+    <details>
+      <summary>Compliance Documentation Support</summary>
+      <p>Assistance with SAM.gov registration, banking onboarding, ownership statements, and capability narratives.
+      We help small businesses and subcontractors get federal-ready with clarity and speed.</p>
+    </details>
+  </div>
 
   <div class="section">
     <h3>Certifications</h3>
-    <p>Wells Government Equipment and Supply LLC is actively registered in the System for Award Management (SAM.gov).<br>
-    CAGE Code: 156B9<br>
-    UEI: DBSVZT5XC386 </p>
+    <p>
+      Wells Government Equipment and Supply LLC is actively registered in the System for Award Management (SAM.gov).<br>
+      CAGE Code: 156B9<br>
+      UEI: DBSVZT5XC386
+    </p>
   </div>
-<div class="section">
-  <h3>Capability Statement</h3>
-  <p><strong>Wells Government Equipment and Supply LLC</strong> is a veteran-owned small business specializing in the sourcing, packaging, and delivery of industrial hardware and mission-critical supplies to federal agencies. We support GPC micro-purchases, Army logistics, and pass-through subcontracting with a focus on compliance, responsiveness, and operational precision.</p>
-  <p>Our offerings include bolts, nuts, washers, springs, gaskets, control knobs, and packing materials, organized under PSCs 5310, 5306, 5305, 5360, 5330, 5355, and 5340. We deliver custom-labeled kits and crated shipments tailored to mission-specific requirements, and we operate under NAICS codes 423840, 488991, 561910, and 541611.</p>
-  <p>With over three decades of federal procurement experience, our team brings deep knowledge of acquisition workflows, documentation standards, and supply chain coordination. We are equipped to support federal buyers and prime contractors with scalable, compliant solutions across multiple acquisition pathways.</p>
-</div>
-  
+
+  <div class="section">
+    <h3>Capability Statement</h3>
+    <p>
+      <strong>Wells Government Equipment and Supply LLC</strong> is a veteran-owned small business specializing in
+      the sourcing, packaging, and delivery of industrial hardware and mission-critical supplies to federal agencies.
+      We support GPC micro-purchases, Army logistics, and pass-through subcontracting with a focus on compliance,
+      responsiveness, and operational precision.
+    </p>
+    <p>
+      Our offerings include bolts, nuts, washers, springs, gaskets, control knobs, and packing materials, organized
+      under PSCs 5310, 5306, 5305, 5360, 5330, 5355, and 5340. We deliver custom-labeled kits and crated shipments
+      tailored to mission-specific requirements, and we operate under NAICS codes 423840, 488991, 561910, and 541611.
+    </p>
+    <p>
+      With over three decades of federal procurement experience, our team brings deep knowledge of acquisition workflows,
+      documentation standards, and supply chain coordination. We are equipped to support federal buyers and prime
+      contractors with scalable, compliant solutions across multiple acquisition pathways.
+    </p>
+  </div>
+
   <div class="section cta">
     <h3>Contact Us</h3>
     <p>Email: wellsgovernmentequipmentandsupply@outlook.com</p>
     <p>Phone: (734) 778-0687</p>
+    <p>Total Visitors: <span id="visitor-count">—</span></p>
   </div>
+
   <footer style="text-align: center; font-size: 0.9em; padding: 1em 0; background-color: #f5f5f5;">
-  <p>© 2025 Wells Government Equipment and Supply LLC. All rights reserved.</p>
-  <p>Registered in the State of Florida · Veteran-Owned Small Business</p>
-</footer>
+    <p>© 2025 Wells Government Equipment and Supply LLC. All rights reserved.</p>
+    <p>Registered in the State of Florida · Veteran-Owned Small Business</p>
+  </footer>
+
+  <script>
+    const counterEl = document.getElementById('visitor-count');
+    fetch('https://api.countapi.xyz/hit/wells-gov-supply/visits')
+      .then(res => res.json())
+      .then(data => {
+        counterEl.innerText = data.value;
+      })
+      .catch(() => {
+        counterEl.innerText = 'N/A';
+      });
+  </script>
+
 </body>
 </html>
+
+
 
 
 
