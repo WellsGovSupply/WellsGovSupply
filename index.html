@@ -40,20 +40,18 @@
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     }
 
-    .logo-small {
-      width: 48px;
-      height: 48px;
-      padding: 5px;
-      background-color: #fff;
-      transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
-      opacity: 0.85;
-    }
+   .logo-hover {
+  padding: 5px;
+  background-color: #fff;
+  opacity: 0.85;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+}
 
-    .logo-small:hover {
-      opacity: 1;
-      transform: scale(1.05);
-      box-shadow: 0 0 12px 4px rgba(0, 116, 217, 0.6); /* Blue glow */
-    }
+.logo-hover:hover {
+  opacity: 1;
+  transform: scale(1.05);
+  box-shadow: 0 0 12px 4px rgba(0, 116, 217, 0.6); /* Blue glow */
+}
 
     .center-title {
       font-size: 1.8em;
@@ -117,7 +115,9 @@
   <div class="header">
     <img src="Wells Gov Equip Sup Logo 8.png"
          alt="Company logo with shield and military vehicles."
-         class="logo-bordered">
+      class="logo-hover"
+     style="width:20vw; max-width:400px; min-width:150px; height:auto; margin-bottom:10px;">
+         <!-- class="logo-bordered"> -->    
     <p class="tagline" style="color: #0074D9; font-weight: bold;">
   Certified SDVOSB & VOSB. Mission Driven.
 </p>
@@ -135,8 +135,9 @@
   <h2>
     <img src="Mini Icon Wells Gov.png"
          alt="Mini badge logo for Wells Government Equipment and Supply"
-        class="logo-small"
-         style="vertical-align:middle; margin-right:8px;">
+        class="logo-hover"
+         style="width:48px; height:48px; vertical-align:middle; margin-right:8px;">
+
     Mission-Ready Supply Solutions for Federal Buyers
   </h2>
 
@@ -199,8 +200,9 @@
   <h3>
     Certifications
       <img src="SDVOSB-Badge.png" alt="SDVOSB Certification Badge"
-        class="logo-small"
-         style="vertical-align:middle; margin-right:8px;">
+        class="logo-hover"
+         style="width:48px; height:48px; vertical-align:middle; margin-right:8px;">
+
   </h3>
   <div>
     <p>
@@ -253,6 +255,7 @@
 
 </body>
 </html>
+
 
 
 
