@@ -40,6 +40,21 @@
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     }
 
+    .logo-small {
+      width: 48px;
+      height: 48px;
+      padding: 5px;
+      background-color: #fff;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+      opacity: 0.85;
+    }
+
+    .logo-small:hover {
+      opacity: 1;
+      transform: scale(1.05);
+      box-shadow: 0 0 12px 4px rgba(0, 116, 217, 0.6); /* Blue glow */
+    }
+
     .center-title {
       font-size: 1.8em;
       margin: 0;
@@ -120,8 +135,8 @@
   <h2>
     <img src="Mini Icon Wells Gov.png"
          alt="Mini badge logo for Wells Government Equipment and Supply"
-        class="logo-bordered"
-         style="width:48px; height:48px; vertical-align:middle; margin-right:8px;">
+        class="logo-small"
+         style="vertical-align:middle; margin-right:8px;">
     Mission-Ready Supply Solutions for Federal Buyers
   </h2>
 
@@ -184,8 +199,8 @@
   <h3>
     Certifications
       <img src="SDVOSB-Badge.png" alt="SDVOSB Certification Badge"
-        class="logo-bordered"
-         style="width:48px; height:48px; vertical-align:middle; margin-right:8px;">
+        class="logo-small"
+         style="vertical-align:middle; margin-right:8px;">
   </h3>
   <div>
     <p>
@@ -238,6 +253,7 @@
 
 </body>
 </html>
+
 
 
 
