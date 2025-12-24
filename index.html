@@ -323,35 +323,31 @@
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const heli = document.getElementById("helicopter");
-  let flightActive = true;   // controls whether random flight continues
-  let flightTimer;           // stores the timeout loop
+  let flightActive = true;
+  let flightTimer;
 
   // TAKEOFF ANIMATION
-heli.addEventListener("click", () => {
-  // Optional: prevent multiple takeoffs
-  heli.style.pointerEvents = "none";
+  heli.addEventListener("click", () => {
+    heli.style.pointerEvents = "none";
 
-  // Step 1: small lift (rotor spin-up effect)
-  heli.style.transition = "transform 0.8s ease-out";
-  heli.style.transform += " translateY(-40px)";
+    heli.style.transition = "transform 0.8s ease-out";
+    heli.style.transform += " translateY(-40px)";
 
-  setTimeout(() => {
-    // Step 2: big takeoff arc
-    heli.style.transition = "transform 2.2s ease-in-out";
-    heli.style.transform += " translate(200px, -200px)";
-
-    // Step 3: resume random flight after takeoff
     setTimeout(() => {
-      flightActive = true;
-      randomFlight();
-      heli.style.pointerEvents = "auto";
-    }, 2200);
+      heli.style.transition = "transform 2.2s ease-in-out";
+      heli.style.transform += " translate(200px, -200px)";
 
-  }, 800);
-});
-  
+      setTimeout(() => {
+        flightActive = true;
+        randomFlight();
+        heli.style.pointerEvents = "auto";
+      }, 2200);
+
+    }, 800);
+  });
+
   function randomFlight() {
-    if (!flightActive) return; // stop if time is up
+    if (!flightActive) return;
 
     const maxX = window.innerWidth - 220;
     const maxY = window.innerHeight - 180;
@@ -365,26 +361,24 @@ heli.addEventListener("click", () => {
     flightTimer = setTimeout(randomFlight, nextMove);
   }
 
-  // Start random flight
   randomFlight();
 
-  // After 10 seconds, stop random flight and land
   setTimeout(() => {
-    flightActive = false;       // stop future random moves
-    clearTimeout(flightTimer);  // cancel pending move
+    flightActive = false;
+    clearTimeout(flightTimer);
 
-    // LANDING POSITION (upper-left corner)
-    const landX = 20;  // px from left
-    const landY = 20;  // px from top
+    const landX = 20;
+    const landY = 20;
 
     heli.style.transform = `translate(${landX}px, ${landY}px)`;
 
-  }, 10000); // 10 seconds
+  }, 10000);
 });
 </script>
 
 </body>
 </html>
+
 
 
 
