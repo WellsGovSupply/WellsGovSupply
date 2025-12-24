@@ -26,7 +26,9 @@
       transform: translate(0, 0);
       transition: transform 3s ease-out;
     }
-
+    
+    heli.classList.add("face-right");
+    
     #heli-body {
       position: absolute;
       width: 100px;
@@ -57,6 +59,15 @@
        Existing Site CSS
        ============================ */
 
+ .face-left {
+  transform: scaleX(-1);
+}
+
+.face-right {
+  transform: scaleX(1);
+}
+
+    
     body {
       margin: 0;
       padding-left: 40px;
@@ -346,20 +357,33 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 800);
   });
 
-  function randomFlight() {
-    if (!flightActive) return;
+let lastX = 0; // track previous X position
 
-    const maxX = window.innerWidth - 220;
-    const maxY = window.innerHeight - 180;
+function randomFlight() {
+  if (!flightActive) return;
 
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
+  const maxX = window.innerWidth - 220;
+  const maxY = window.innerHeight - 180;
 
-    heli.style.transform = `translate(${x}px, ${y}px)`;
+  const x = Math.random() * maxX;
+  const y = Math.random() * maxY;
 
-    const nextMove = 2000 + Math.random() * 2500;
-    flightTimer = setTimeout(randomFlight, nextMove);
+  // Flip helicopter based on direction
+  if (x < lastX) {
+    heli.classList.remove("face-right");
+    heli.classList.add("face-left");
+  } else {
+    heli.classList.remove("face-left");
+    heli.classList.add("face-right");
   }
+
+  lastX = x; // update last position
+
+  heli.style.transform = `translate(${x}px, ${y}px)`;
+
+  const nextMove = 2000 + Math.random() * 2500;
+  flightTimer = setTimeout(randomFlight, nextMove);
+}
 
   randomFlight();
 
@@ -378,6 +402,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
