@@ -49,6 +49,17 @@
       to   { transform: rotate(360deg); }
     }
 
+        /* ============================
+       🚁 Direction Flip Classes
+       ============================ */
+    .face-left {
+      transform: scaleX(-1);
+    }
+
+    .face-right {
+      transform: scaleX(1);
+    }
+
     /* ============================
        Existing Site CSS
        ============================ */
@@ -314,41 +325,63 @@
   </footer>
 
   <!-- ============================
-       🚁 Helicopter Random Flight JS
+       🚁 Helicopter Flight JS
        ============================ -->
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const heli = document.getElementById("helicopter");
 
-  // Define flight path: array of positions
-  const flightPath = [
-    { x: -200, y: 100 },   // off-screen left
-    { x: 200, y: 80 },     // mid-left
-    { x: 600, y: 120 },    // center
-    { x: 1000, y: 60 },    // far right
-    { x: 800, y: 200 },    // dip down
-    { x: 400, y: 150 },    // curve back
-    { x: -40, y: -20 }      // final landing near logo
-  ];
-
-  let step = 0;
-
-  function flyNext() {
-    if (step >= flightPath.length) return;
-
-    const { x, y } = flightPath[step];
+  // Helper to move helicopter
+  function moveTo(x, y, face) {
     heli.style.transform = `translate(${x}px, ${y}px)`;
-
-    step++;
-    setTimeout(flyNext, 1200); // time between moves
+    heli.classList.remove("face-left", "face-right");
+    if (face) heli.classList.add(face);
   }
 
-  flyNext(); // start flight
+  // Get logo position (assumes #logo exists)
+  const logo = document.getElementById("logo");
+  const logoRect = logo.getBoundingClientRect();
+  const startX = logoRect.left;
+  const startY = logoRect.top;
+
+  // Define positions
+  const leftX = startX - 200;               // Move left 200px
+  const rightX = window.innerWidth - 100;   // Right edge
+  const downY = startY + 80;                // Slight descent
+
+  // Start at logo
+  moveTo(startX, startY, "face-right");
+
+  // Begin animation sequence
+  setTimeout(() => {
+    // 1. Move left
+    moveTo(leftX, startY, "face-left");
+
+    setTimeout(() => {
+      // 2. Turn and move right to edge
+      moveTo(rightX, startY, "face-right");
+
+      setTimeout(() => {
+        // 3. Turn and fly down a bit
+        moveTo(rightX, downY, "face-left");
+
+        setTimeout(() => {
+          // 4. Return to logo
+          moveTo(startX, startY, "face-left");
+
+        }, 3000); // down → logo
+
+      }, 3000); // right → down
+
+    }, 3000); // left → right
+
+  }, 500); // initial delay
 });
 </script>
 
 </body>
 </html>
+
 
 
 
