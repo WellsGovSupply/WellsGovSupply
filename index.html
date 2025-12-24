@@ -74,7 +74,7 @@
     .header {
       text-align: center;
       padding: 20px;
-      background-color: #ffffff;
+      background-color: #e3e8ee;
     }
 
     .logo-bordered {
@@ -338,16 +338,16 @@ document.addEventListener("DOMContentLoaded", () => {
     if (face) heli.classList.add(face);
   }
 
-  // Get logo position (assumes #logo exists)
-  const logo = document.getElementById("logo");
-  const logoRect = logo.getBoundingClientRect();
-  const startX = logoRect.left;
-  const startY = logoRect.top;
+// Get logo position and center helicopter on it
+const logo = document.getElementById("logo");
+const logoRect = logo.getBoundingClientRect();
 
-  // Define positions
-  const leftX = startX - 200;               // Move left 200px
-  const rightX = window.innerWidth - 100;   // Right edge
-  const downY = startY + 80;                // Slight descent
+const heliWidth = heli.offsetWidth;
+
+// Center helicopter on the logo visually
+const startX = logoRect.left + (logoRect.width / 2) - (heliWidth / 2);
+const startY = logoRect.top;
+  
 
   // Start at logo
   moveTo(startX, startY, "face-right");
@@ -381,6 +381,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
