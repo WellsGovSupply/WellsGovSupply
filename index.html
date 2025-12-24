@@ -326,6 +326,30 @@ document.addEventListener("DOMContentLoaded", () => {
   let flightActive = true;   // controls whether random flight continues
   let flightTimer;           // stores the timeout loop
 
+  // TAKEOFF ANIMATION
+heli.addEventListener("click", () => {
+  // Optional: prevent multiple takeoffs
+  heli.style.pointerEvents = "none";
+
+  // Step 1: small lift (rotor spin-up effect)
+  heli.style.transition = "transform 0.8s ease-out";
+  heli.style.transform += " translateY(-40px)";
+
+  setTimeout(() => {
+    // Step 2: big takeoff arc
+    heli.style.transition = "transform 2.2s ease-in-out";
+    heli.style.transform += " translate(200px, -200px)";
+
+    // Step 3: resume random flight after takeoff
+    setTimeout(() => {
+      flightActive = true;
+      randomFlight();
+      heli.style.pointerEvents = "auto";
+    }, 2200);
+
+  }, 800);
+});
+  
   function randomFlight() {
     if (!flightActive) return; // stop if time is up
 
@@ -361,6 +385,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
