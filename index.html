@@ -316,29 +316,40 @@
   <!-- ============================
        🚁 Helicopter Random Flight JS
        ============================ -->
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const heli = document.getElementById("helicopter");
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const heli = document.getElementById("helicopter");
 
-      function randomFlight() {
-        const maxX = window.innerWidth - 220;
-        const maxY = window.innerHeight - 180;
+  // Define flight path: array of positions
+  const flightPath = [
+    { x: -200, y: 100 },   // off-screen left
+    { x: 200, y: 80 },     // mid-left
+    { x: 600, y: 120 },    // center
+    { x: 1000, y: 60 },    // far right
+    { x: 800, y: 200 },    // dip down
+    { x: 400, y: 150 },    // curve back
+    { x: 120, y: 60 }      // final landing near logo
+  ];
 
-        const x = Math.random() * maxX;
-        const y = Math.random() * maxY;
+  let step = 0;
 
-        heli.style.transform = `translate(${x}px, ${y}px)`;
+  function flyNext() {
+    if (step >= flightPath.length) return;
 
-        const nextMove = 2000 + Math.random() * 2500;
-        setTimeout(randomFlight, nextMove);
-      }
+    const { x, y } = flightPath[step];
+    heli.style.transform = `translate(${x}px, ${y}px)`;
 
-      randomFlight();
-    });
-  </script>
+    step++;
+    setTimeout(flyNext, 1200); // time between moves
+  }
+
+  flyNext(); // start flight
+});
+</script>
 
 </body>
 </html>
+
 
 
 
