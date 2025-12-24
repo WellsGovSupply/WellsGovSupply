@@ -9,7 +9,50 @@
   
   <meta charset="UTF-8">
   <title>Wells Government Equipment and Supply</title>
+
   <style>
+
+    /* ============================
+       🚁 Helicopter Animation CSS
+       ============================ */
+    #helicopter {
+      position: fixed;
+      top: 20vh;
+      left: 20vw;
+      width: 200px;
+      height: auto;
+      z-index: 9999;
+      pointer-events: none;
+      transform: translate(0, 0);
+      transition: transform 3s ease-out;
+    }
+
+    #heli-body {
+      position: absolute;
+      width: 200px;
+      height: auto;
+      top: 0;
+      left: 0;
+    }
+
+    #heli-rotor {
+      position: absolute;
+      width: 200px;
+      height: auto;
+      top: -12px; /* adjust if needed */
+      left: 0;
+      animation: rotorSpin 0.12s linear infinite;
+    }
+
+    @keyframes rotorSpin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    /* ============================
+       Existing Site CSS
+       ============================ */
+
     body {
       margin: 0;
       padding-left: 40px;
@@ -23,35 +66,34 @@
       background-color: #ffffff;
     }
 
-  .logo-bordered {
-  width: 20vw; /* 20% of the viewport width */
-  max-width: 400px; /* prevents it from getting too large on big screens */
-  min-width: 150px; /* ensures it's still visible on small screens */
-  height: auto;
-  padding: 5px;
-  background-color: #fff;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  margin-bottom: 10px;
-}
-
+    .logo-bordered {
+      width: 20vw;
+      max-width: 400px;
+      min-width: 150px;
+      height: auto;
+      padding: 5px;
+      background-color: #fff;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin-bottom: 10px;
+    }
 
     .logo-bordered:hover {
       transform: scale(1.05);
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     }
 
-   .logo-hover {
-  padding: 5px;
-  background-color: #fff;
-  opacity: 0.85;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
-}
+    .logo-hover {
+      padding: 5px;
+      background-color: #fff;
+      opacity: 0.85;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+    }
 
-.logo-hover:hover {
-  opacity: 1;
-  transform: scale(1.05);
-  box-shadow: 0 0 12px 4px rgba(0, 116, 217, 0.6); /* Blue glow */
-}
+    .logo-hover:hover {
+      opacity: 1;
+      transform: scale(1.05);
+      box-shadow: 0 0 12px 4px rgba(0, 116, 217, 0.6);
+    }
 
     .center-title {
       font-size: 1.8em;
@@ -110,22 +152,34 @@
     }
   </style>
 </head>
+
 <body>
+
+  <!-- ============================
+       🚁 Helicopter HTML
+       ============================ -->
+  <div id="helicopter">
+    <img id="heli-body" src="helicopter-body.png" alt="Helicopter body">
+    <img id="heli-rotor" src="helicopter-rotor.png" alt="Helicopter rotor">
+  </div>
 
   <div class="header">
     <img src="Wells Gov Equip Sup Logo 8.png"
          alt="Company logo with shield and military vehicles."
-      class="logo-hover"
-     style="width:20vw; max-width:400px; min-width:150px; height:auto; margin-bottom:10px;">
-         <!-- class="logo-bordered"> -->    
+         class="logo-hover"
+         style="width:20vw; max-width:400px; min-width:150px; height:auto; margin-bottom:10px;">
+
     <p class="tagline" style="color: #0074D9; font-weight: bold;">
-  Certified SDVOSB & VOSB<br> 
-  Mission Driven
-</p>
+      Certified SDVOSB & VOSB<br> 
+      Mission Driven
+    </p>
+
     <h1 class="center-title">Wells Government Equipment and Supply</h1>
+
     <div class="launch-banner">
       Officially accepting contracts October 2026 (1Q FY27)
     </div>
+
     <button
       class="notify-button"
       onclick="window.location.href='mailto:wellsgovernmentequipmentandsupply@outlook.com?subject=Notify%20Me%20When%20You%20Launch';">
@@ -136,9 +190,8 @@
   <h2>
     <img src="Mini Icon Wells Gov.png"
          alt="Mini badge logo for Wells Government Equipment and Supply"
-        class="logo-hover"
+         class="logo-hover"
          style="width:48px; height:48px; vertical-align:middle; margin-right:8px;">
-
     Mission-Ready Supply Solutions for Federal Buyers
   </h2>
 
@@ -199,58 +252,55 @@
     </details>
   </div>
 
-<div class="section">
-  <h3>
-    Certifications
+  <div class="section">
+    <h3>
+      Certifications
       <img src="SDVOSB-Badge.png" alt="SDVOSB Certification Badge"
         class="logo-hover"
-         style="width:48px; height:48px; vertical-align:middle; margin-right:8px;">
+        style="width:48px; height:48px; vertical-align:middle; margin-right:8px;">
       <img src="VOSB-Badge.png" alt="VOSB Certification Badge"
         class="logo-hover"
         style="width:48px; height:48px; vertical-align:middle; margin-right:8px;">
+    </h3>
 
-  </h3>
-  <div>
     <p>
-       Wells Government Equipment and Supply LLC is actively registered in the System for Award Management (SAM.gov).<br>
-       CAGE Code: 156B9<br>
-       UEI: DBSVZT5XC386<br>
-       Certified SDVOSB & VOSB – Verified by SBA - <a href="https://search.certifications.sba.gov/" target="_blank">SBA VetCert Directory</a><br> 
+      Wells Government Equipment and Supply LLC is actively registered in the System for Award Management (SAM.gov).<br>
+      CAGE Code: 156B9<br>
+      UEI: DBSVZT5XC386<br>
+      Certified SDVOSB & VOSB – Verified by SBA - 
+      <a href="https://search.certifications.sba.gov/" target="_blank">SBA VetCert Directory</a><br>
       SBA Certification Date: October 29, 2025 · Renewal Due: October 29, 2028
-</p>
-   </div>
+    </p>
   </div>
 
-
-<div class="section">
-  <h3>Capability Statement</h3>
-  <p>
-    <strong>Wells Government Equipment and Supply LLC</strong> is a <strong>certified Service-Disabled Veteran-Owned Small Business (SDVOSB) and 
+  <div class="section">
+    <h3>Capability Statement</h3>
+    <p>
+      <strong>Wells Government Equipment and Supply LLC</strong> is a <strong>certified Service-Disabled Veteran-Owned Small Business (SDVOSB) and 
       Veteran-Owned Small Business (VOSB)</strong> specializing in the sourcing, packaging, and delivery of industrial hardware and mission-critical supplies to federal agencies. 
-    We support GPC micro-purchases, Army logistics, and pass-through subcontracting with a focus on compliance, responsiveness, and operational precision.
-  </p>
-  <p>
-    Our offerings include bolts, nuts, washers, springs, gaskets, control knobs, and packing materials, organized under PSCs 5305, 5306, 5310, 5330, 5340, 5355, and 5360. 
-    We deliver custom-labeled kits and crated shipments tailored to mission-specific requirements, and we operate under NAICS codes 423710, 423830, 423840, 488991, 541611, and 561910.
-  </p>
-  <p>
-    With over three decades of federal procurement experience, our team brings deep knowledge of acquisition workflows, documentation standards, and supply chain coordination. 
-    We deliver scalable, compliant solutions to federal buyers and prime contractors across multiple acquisition pathways.
-  </p>
-  <p><strong>Differentiators:</strong></p>
-  <ul>
-    <li>Certified SDVOSB & VOSB – SBA Verified</li>
-    <li>36+ years of federal procurement expertise</li>
-    <li>Mission-specific packaging and MIL-STD documentation</li>
-    <li>Responsive GPC micro-purchase fulfillment</li>
-    <li>Compliant pass-through subcontracting support</li>
-  </ul>
-  <p>
-    SBA Certification Date: October 29, 2025 · Renewal Due: October 29, 2028<br>
-    View our SBA listing: <a href="https://search.certifications.sba.gov/" target="_blank">SBA VetCert Directory</a>
-  </p>
-</div>
-
+      We support GPC micro-purchases, Army logistics, and pass-through subcontracting with a focus on compliance, responsiveness, and operational precision.
+    </p>
+    <p>
+      Our offerings include bolts, nuts, washers, springs, gaskets, control knobs, and packing materials, organized under PSCs 5305, 5306, 5310, 5330, 5340, 5355, and 5360. 
+      We deliver custom-labeled kits and crated shipments tailored to mission-specific requirements, and we operate under NAICS codes 423710, 423830, 423840, 488991, 541611, and 561910.
+    </p>
+    <p>
+      With over three decades of federal procurement experience, our team brings deep knowledge of acquisition workflows, documentation standards, and supply chain coordination. 
+      We deliver scalable, compliant solutions to federal buyers and prime contractors across multiple acquisition pathways.
+    </p>
+    <p><strong>Differentiators:</strong></p>
+    <ul>
+      <li>Certified SDVOSB & VOSB – SBA Verified</li>
+      <li>36+ years of federal procurement expertise</li>
+      <li>Mission-specific packaging and MIL-STD documentation</li>
+      <li>Responsive GPC micro-purchase fulfillment</li>
+      <li>Compliant pass-through subcontracting support</li>
+    </ul>
+    <p>
+      SBA Certification Date: October 29, 2025 · Renewal Due: October 29, 2028<br>
+      View our SBA listing: <a href="https://search.certifications.sba.gov/" target="_blank">SBA VetCert Directory</a>
+    </p>
+  </div>
 
   <div class="section cta">
     <h3>Contact Us</h3>
@@ -263,46 +313,29 @@
     Registered in the State of Florida · Certified SDVOSB & VOSB</p>
   </footer>
 
+  <!-- ============================
+       🚁 Helicopter Random Flight JS
+       ============================ -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const heli = document.getElementById("helicopter");
+
+      function randomFlight() {
+        const maxX = window.innerWidth - 220;
+        const maxY = window.innerHeight - 180;
+
+        const x = Math.random() * maxX;
+        const y = Math.random() * maxY;
+
+        heli.style.transform = `translate(${x}px, ${y}px)`;
+
+        const nextMove = 2000 + Math.random() * 2500;
+        setTimeout(randomFlight, nextMove);
+      }
+
+      randomFlight();
+    });
+  </script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
