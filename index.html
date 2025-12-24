@@ -320,28 +320,47 @@
   <!-- ============================
        🚁 Helicopter Random Flight JS
        ============================ -->
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const heli = document.getElementById("helicopter");
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const heli = document.getElementById("helicopter");
+  let flightActive = true;   // controls whether random flight continues
+  let flightTimer;           // stores the timeout loop
 
-      function randomFlight() {
-        const maxX = window.innerWidth - 220;
-        const maxY = window.innerHeight - 180;
+  function randomFlight() {
+    if (!flightActive) return; // stop if time is up
 
-        const x = Math.random() * maxX;
-        const y = Math.random() * maxY;
+    const maxX = window.innerWidth - 220;
+    const maxY = window.innerHeight - 180;
 
-        heli.style.transform = `translate(${x}px, ${y}px)`;
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
 
-        const nextMove = 2000 + Math.random() * 2500;
-        setTimeout(randomFlight, nextMove);
-      }
+    heli.style.transform = `translate(${x}px, ${y}px)`;
 
-      randomFlight();
-    });
-  </script>
+    const nextMove = 2000 + Math.random() * 2500;
+    flightTimer = setTimeout(randomFlight, nextMove);
+  }
+
+  // Start random flight
+  randomFlight();
+
+  // After 10 seconds, stop random flight and land
+  setTimeout(() => {
+    flightActive = false;       // stop future random moves
+    clearTimeout(flightTimer);  // cancel pending move
+
+    // LANDING POSITION (upper-left corner)
+    const landX = 20;  // px from left
+    const landY = 20;  // px from top
+
+    heli.style.transform = `translate(${landX}px, ${landY}px)`;
+
+  }, 10000); // 10 seconds
+});
+</script>
 
 </body>
 </html>
+
 
 
