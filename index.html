@@ -371,17 +371,12 @@ function randomFlight() {
   const y = Math.random() * maxY;
 
   // Flip helicopter based on direction
-  if (x < lastX) {
-    heli.classList.remove("face-right");
-    heli.classList.add("face-left");
-  } else {
-    heli.classList.remove("face-left");
-    heli.classList.add("face-right");
-  }
+  let direction = x < lastX ? -1 : 1;
 
-  lastX = x; // update last position
+  // Apply BOTH translate and flip
+  heli.style.transform = `translate(${x}px, ${y}px) scaleX(${direction})`;
 
-  heli.style.transform = `translate(${x}px, ${y}px)`;
+  lastX = x;
 
   const nextMove = 2000 + Math.random() * 2500;
   flightTimer = setTimeout(randomFlight, nextMove);
@@ -404,6 +399,7 @@ function randomFlight() {
 
 </body>
 </html>
+
 
 
 
