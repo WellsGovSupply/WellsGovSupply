@@ -27,8 +27,7 @@
       transition: transform 3s ease-out;
     }
     
-    heli.classList.add("face-right");
-    
+     
     #heli-body {
       position: absolute;
       width: 100px;
@@ -336,6 +335,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const heli = document.getElementById("helicopter");
   let flightActive = true;
   let flightTimer;
+  
+  // Set initial facing direction
+  heli.classList.add("face-right");
 
   // TAKEOFF ANIMATION
   heli.addEventListener("click", () => {
@@ -402,6 +404,7 @@ function randomFlight() {
 
 </body>
 </html>
+
 
 
 
