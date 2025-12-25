@@ -342,11 +342,11 @@ document.addEventListener("DOMContentLoaded", () => {
     heli.style.pointerEvents = "none";
 
     heli.style.transition = "transform 0.8s ease-out";
-    heli.style.transform += " translateY(-40px)";
+    heli.style.transform = " translateY(-40px)";
 
     setTimeout(() => {
       heli.style.transition = "transform 2.2s ease-in-out";
-      heli.style.transform += " translate(200px, -200px)";
+      heli.style.transform = " translate(200px, -200px)";
 
       setTimeout(() => {
         flightActive = true;
@@ -402,6 +402,7 @@ function randomFlight() {
 
 </body>
 </html>
+
 
 
 
