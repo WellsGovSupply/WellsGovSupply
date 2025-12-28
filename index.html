@@ -398,43 +398,38 @@ document.addEventListener("DOMContentLoaded", () => {
   // -----------------------------------------
   let lastX = 0;
 
+let currentX = 20;
+let currentY = 20;
+
 function randomFlight() {
   if (!flightActive) return;
 
-  const margin = 20; // safe distance from edges
+  const margin = 40;
 
-  // Helicopter size
   const heliWidth = heli.offsetWidth;
   const heliHeight = heli.offsetHeight;
 
-  // Boundaries with margins
   const maxX = window.innerWidth - heliWidth - margin;
   const maxY = window.innerHeight - heliHeight - margin;
 
   const minX = margin;
   const minY = margin;
 
-  // New random destination (full screen range)
   const endX = minX + Math.random() * (maxX - minX);
   const endY = minY + Math.random() * (maxY - minY);
 
-  // Current position from computed transform matrix
-  const style = window.getComputedStyle(heli);
-  const matrix = new DOMMatrixReadOnly(style.transform);
-  const startX = matrix.m41;
-  const startY = matrix.m42;
+  // Use stored values instead of transform matrix
+  const startX = currentX;
+  const startY = currentY;
 
-  // MUCH larger curve radius for long sweeping arcs
   const controlX = (startX + endX) / 2 + (Math.random() * 600 - 300);
   const controlY = (startY + endY) / 2 + (Math.random() * 600 - 300);
 
-  // Flip direction based on movement
   let direction = endX < startX ? -1 : 1;
 
-  // Animate curve using JS interpolation
   let t = 0;
-  const duration = 3500; // longer flight time
-  const step = 16; // ~60fps
+  const duration = 3500;
+  const step = 16;
 
   clearInterval(flightTimer);
 
@@ -443,12 +438,9 @@ function randomFlight() {
     if (t >= 1) {
       t = 1;
       clearInterval(flightTimer);
-
-      // Slightly longer pause before next curve
       setTimeout(randomFlight, 400 + Math.random() * 600);
     }
 
-    // Quadratic Bezier formula
     const x =
       (1 - t) ** 2 * startX +
       2 * (1 - t) * t * controlX +
@@ -458,6 +450,10 @@ function randomFlight() {
       (1 - t) ** 2 * startY +
       2 * (1 - t) * t * controlY +
       t ** 2 * endY;
+
+    // Update stored position
+    currentX = x;
+    currentY = y;
 
     heli.style.transform = `scaleX(${direction}) translate(${x}px, ${y}px)`;
 
@@ -482,6 +478,7 @@ function randomFlight() {
 
 </body>
 </html>
+
 
 
 
