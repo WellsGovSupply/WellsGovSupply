@@ -394,33 +394,74 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // -----------------------------------------
-  // RANDOM FLIGHT LOGIC (with proper boundaries)
+  // CURVED RANDOM FLIGHT (Bezier path + margins)
   // -----------------------------------------
   let lastX = 0;
 
   function randomFlight() {
     if (!flightActive) return;
 
-    // Get helicopter size
+    const margin = 40; // safe distance from edges
+
+    // Helicopter size
     const heliWidth = heli.offsetWidth;
     const heliHeight = heli.offsetHeight;
 
-    // Keep helicopter fully inside the viewport
-    const maxX = window.innerWidth - heliWidth;
-    const maxY = window.innerHeight - heliHeight;
+    // Boundaries with margins
+    const maxX = window.innerWidth - heliWidth - margin;
+    const maxY = window.innerHeight - heliHeight - margin;
 
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
+    const minX = margin;
+    const minY = margin;
 
-    // Flip based on direction
-    let direction = x < lastX ? -1 : 1;
+    // New random destination
+    const endX = minX + Math.random() * (maxX - minX);
+    const endY = minY + Math.random() * (maxY - minY);
 
-    heli.style.transform = `translate(${x}px, ${y}px) scaleX(${direction})`;
+    // Current position from computed transform matrix
+    const style = window.getComputedStyle(heli);
+    const matrix = new DOMMatrixReadOnly(style.transform);
+    const startX = matrix.m41;
+    const startY = matrix.m42;
 
-    lastX = x;
+    // Control point for curve (midpoint + random offset)
+    const controlX = (startX + endX) / 2 + (Math.random() * 200 - 100);
+    const controlY = (startY + endY) / 2 + (Math.random() * 200 - 100);
 
-    const nextMove = 2000 + Math.random() * 2500;
-    flightTimer = setTimeout(randomFlight, nextMove);
+    // Flip direction based on movement
+    let direction = endX < startX ? -1 : 1;
+
+    // Animate curve using JS interpolation
+    let t = 0;
+    const duration = 2500; // ms
+    const step = 16; // ~60fps
+
+    clearInterval(flightTimer);
+
+    flightTimer = setInterval(() => {
+      t += step / duration;
+      if (t >= 1) {
+        t = 1;
+        clearInterval(flightTimer);
+
+        // Pause briefly before next curve
+        setTimeout(randomFlight, 300 + Math.random() * 500);
+      }
+
+      // Quadratic Bezier formula
+      const x =
+        (1 - t) ** 2 * startX +
+        2 * (1 - t) * t * controlX +
+        t ** 2 * endX;
+
+      const y =
+        (1 - t) ** 2 * startY +
+        2 * (1 - t) * t * controlY +
+        t ** 2 * endY;
+
+      heli.style.transform = `translate(${x}px, ${y}px) scaleX(${direction})`;
+
+    }, step);
   }
 
   // -----------------------------------------
@@ -428,7 +469,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // -----------------------------------------
   setTimeout(() => {
     flightActive = false;
-    clearTimeout(flightTimer);
+    clearInterval(flightTimer);
 
     const landX = 20;
     const landY = 20;
@@ -441,6 +482,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
