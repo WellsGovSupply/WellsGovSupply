@@ -398,71 +398,71 @@ document.addEventListener("DOMContentLoaded", () => {
   // -----------------------------------------
   let lastX = 0;
 
-  function randomFlight() {
-    if (!flightActive) return;
+function randomFlight() {
+  if (!flightActive) return;
 
-    const margin = 40; // safe distance from edges
+  const margin = 40; // safe distance from edges
 
-    // Helicopter size
-    const heliWidth = heli.offsetWidth;
-    const heliHeight = heli.offsetHeight;
+  // Helicopter size
+  const heliWidth = heli.offsetWidth;
+  const heliHeight = heli.offsetHeight;
 
-    // Boundaries with margins
-    const maxX = window.innerWidth - heliWidth - margin;
-    const maxY = window.innerHeight - heliHeight - margin;
+  // Boundaries with margins
+  const maxX = window.innerWidth - heliWidth - margin;
+  const maxY = window.innerHeight - heliHeight - margin;
 
-    const minX = margin;
-    const minY = margin;
+  const minX = margin;
+  const minY = margin;
 
-    // New random destination
-    const endX = minX + Math.random() * (maxX - minX);
-    const endY = minY + Math.random() * (maxY - minY);
+  // New random destination (full screen range)
+  const endX = minX + Math.random() * (maxX - minX);
+  const endY = minY + Math.random() * (maxY - minY);
 
-    // Current position from computed transform matrix
-    const style = window.getComputedStyle(heli);
-    const matrix = new DOMMatrixReadOnly(style.transform);
-    const startX = matrix.m41;
-    const startY = matrix.m42;
+  // Current position from computed transform matrix
+  const style = window.getComputedStyle(heli);
+  const matrix = new DOMMatrixReadOnly(style.transform);
+  const startX = matrix.m41;
+  const startY = matrix.m42;
 
-    // Control point for curve (midpoint + random offset)
-    const controlX = (startX + endX) / 2 + (Math.random() * 200 - 100);
-    const controlY = (startY + endY) / 2 + (Math.random() * 200 - 100);
+  // MUCH larger curve radius for long sweeping arcs
+  const controlX = (startX + endX) / 2 + (Math.random() * 600 - 300);
+  const controlY = (startY + endY) / 2 + (Math.random() * 600 - 300);
 
-    // Flip direction based on movement
-    let direction = endX < startX ? -1 : 1;
+  // Flip direction based on movement
+  let direction = endX < startX ? -1 : 1;
 
-    // Animate curve using JS interpolation
-    let t = 0;
-    const duration = 2500; // ms
-    const step = 16; // ~60fps
+  // Animate curve using JS interpolation
+  let t = 0;
+  const duration = 3500; // longer flight time
+  const step = 16; // ~60fps
 
-    clearInterval(flightTimer);
+  clearInterval(flightTimer);
 
-    flightTimer = setInterval(() => {
-      t += step / duration;
-      if (t >= 1) {
-        t = 1;
-        clearInterval(flightTimer);
+  flightTimer = setInterval(() => {
+    t += step / duration;
+    if (t >= 1) {
+      t = 1;
+      clearInterval(flightTimer);
 
-        // Pause briefly before next curve
-        setTimeout(randomFlight, 300 + Math.random() * 500);
-      }
+      // Slightly longer pause before next curve
+      setTimeout(randomFlight, 400 + Math.random() * 600);
+    }
 
-      // Quadratic Bezier formula
-      const x =
-        (1 - t) ** 2 * startX +
-        2 * (1 - t) * t * controlX +
-        t ** 2 * endX;
+    // Quadratic Bezier formula
+    const x =
+      (1 - t) ** 2 * startX +
+      2 * (1 - t) * t * controlX +
+      t ** 2 * endX;
 
-      const y =
-        (1 - t) ** 2 * startY +
-        2 * (1 - t) * t * controlY +
-        t ** 2 * endY;
+    const y =
+      (1 - t) ** 2 * startY +
+      2 * (1 - t) * t * controlY +
+      t ** 2 * endY;
 
-      heli.style.transform = `scaleX(${direction}) translate(${x}px, ${y}px)`;
+    heli.style.transform = `scaleX(${direction}) translate(${x}px, ${y}px)`;
 
-    }, step);
-  }
+  }, step);
+}
 
   // -----------------------------------------
   // LANDING AFTER 10 SECONDS
@@ -482,6 +482,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
