@@ -376,21 +376,25 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // -----------------------------------------
-  // RANDOM FLIGHT LOGIC
+  // RANDOM FLIGHT LOGIC (with proper boundaries)
   // -----------------------------------------
   let lastX = 0;
 
   function randomFlight() {
     if (!flightActive) return;
 
-    // Full‑screen movement with safe margins
-    const maxX = window.innerWidth - 150;
-    const maxY = window.innerHeight - 150;
+    // Get helicopter size
+    const heliWidth = heli.offsetWidth;
+    const heliHeight = heli.offsetHeight;
+
+    // Keep helicopter fully inside the viewport
+    const maxX = window.innerWidth - heliWidth;
+    const maxY = window.innerHeight - heliHeight;
 
     const x = Math.random() * maxX;
     const y = Math.random() * maxY;
 
-    // Flip helicopter based on direction
+    // Flip based on direction
     let direction = x < lastX ? -1 : 1;
 
     heli.style.transform = `translate(${x}px, ${y}px) scaleX(${direction})`;
@@ -419,6 +423,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
