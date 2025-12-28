@@ -339,6 +339,11 @@ document.addEventListener("DOMContentLoaded", () => {
   // Start helicopter at landing position
   heli.style.transform = "translate(20px, 20px)";
 
+  // Auto‑start flight after initial transform is applied
+  setTimeout(() => {
+    randomFlight();
+  }, 200);
+
   // Set initial facing direction
   heli.classList.add("face-right");
 
@@ -383,9 +388,7 @@ document.addEventListener("DOMContentLoaded", () => {
     flightTimer = setTimeout(randomFlight, nextMove);
   }
 
-  // REMOVE the auto-start flight here
-  // randomFlight();
-
+  // LANDING AFTER 10 SECONDS
   setTimeout(() => {
     flightActive = false;
     clearTimeout(flightTimer);
@@ -401,6 +404,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
