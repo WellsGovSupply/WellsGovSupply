@@ -335,14 +335,20 @@ document.addEventListener("DOMContentLoaded", () => {
   let flightActive = true;
   let flightTimer;
 
+    // -----------------------------------------
+  // INITIAL POSITION + SMOOTH FLIGHT TRANSITION
+  // -----------------------------------------
+  heli.style.transform = "translate(20px, 20px)";
+  heli.style.transition = "transform 2.2s ease-in-out";
+  
   // -----------------------------------------
   // RESPONSIVE START + LANDING OFFSETS
   // -----------------------------------------
   const isMobile = window.innerWidth < 600;
 
   // Desktop stays 20px, mobile gets a higher/closer start
-  const startOffsetX = isMobile ? -10 : 20;
-  const startOffsetY = isMobile ? 5 : 20;
+  const startOffsetX = isMobile ? -20 : 20;
+  const startOffsetY = isMobile ? 20 : 20;
 
   // -----------------------------------------
   // INITIAL POSITION (CSS handles top/left)
@@ -433,6 +439,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
