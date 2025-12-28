@@ -459,7 +459,7 @@ document.addEventListener("DOMContentLoaded", () => {
         2 * (1 - t) * t * controlY +
         t ** 2 * endY;
 
-      heli.style.transform = `translate(${x}px, ${y}px) scaleX(${direction})`;
+      heli.style.transform = `scaleX(${direction}) translate(${x}px, ${y}px)`;
 
     }, step);
   }
@@ -482,6 +482,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
