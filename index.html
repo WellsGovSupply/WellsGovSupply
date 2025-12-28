@@ -336,12 +336,22 @@ document.addEventListener("DOMContentLoaded", () => {
   let flightTimer;
 
   // -----------------------------------------
-  // INITIAL POSITION + SMOOTH FLIGHT TRANSITION
+  // RESPONSIVE START + LANDING OFFSETS
   // -----------------------------------------
-  heli.style.transform = "translate(20px, 20px)";
+  const isMobile = window.innerWidth < 600;
+
+  // Desktop stays 20px, mobile gets a higher/closer start
+  const startOffsetX = isMobile ? 5 : 20;
+  const startOffsetY = isMobile ? 5 : 20;
+
+  // -----------------------------------------
+  // INITIAL POSITION (CSS handles top/left)
+  // JS only offsets from that position
+  // -----------------------------------------
+  heli.style.transform = `translate(${startOffsetX}px, ${startOffsetY}px)`;
   heli.style.transition = "transform 2.2s ease-in-out";
 
-  // Auto‑start flight after initial transform applies
+  // Auto-start flight after initial transform applies
   setTimeout(() => {
     randomFlight();
   }, 200);
@@ -357,12 +367,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Lift up
     heli.style.transition = "transform 0.8s ease-out";
-    heli.style.transform = "translateY(-40px)";
+    heli.style.transform = `translate(${startOffsetX}px, ${startOffsetY - 40}px)`;
 
     setTimeout(() => {
       // Move diagonally up-right
       heli.style.transition = "transform 2.2s ease-in-out";
-      heli.style.transform = "translate(200px, -200px)";
+      heli.style.transform = `translate(${startOffsetX + 200}px, ${startOffsetY - 200}px)`;
 
       setTimeout(() => {
         flightActive = true;
@@ -375,21 +385,25 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // -----------------------------------------
-  // RANDOM FLIGHT LOGIC
+  // RANDOM FLIGHT LOGIC (dynamic boundaries)
   // -----------------------------------------
   let lastX = 0;
 
   function randomFlight() {
     if (!flightActive) return;
 
-    // Full‑screen movement with safe margins
+    // Dynamic helicopter size
     const heliWidth = heli.offsetWidth;
     const heliHeight = heli.offsetHeight;
+
+    // Safe margins
     const margin = 20;
 
+    // Boundaries
     const maxX = window.innerWidth - heliWidth - margin;
     const maxY = window.innerHeight - heliHeight - margin;
 
+    // Random target position
     const x = Math.random() * maxX;
     const y = Math.random() * maxY;
 
@@ -411,10 +425,7 @@ document.addEventListener("DOMContentLoaded", () => {
     flightActive = false;
     clearTimeout(flightTimer);
 
-    const landX = 20;
-    const landY = 20;
-
-    heli.style.transform = `translate(${landX}px, ${landY}px)`;
+    heli.style.transform = `translate(${startOffsetX}px, ${startOffsetY}px)`;
 
   }, 10000);
 });
@@ -422,6 +433,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
