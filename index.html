@@ -383,8 +383,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!flightActive) return;
 
     // Full‑screen movement with safe margins
-    const maxX = window.innerWidth - 150;
-    const maxY = window.innerHeight - 150;
+    const heliWidth = heli.offsetWidth;
+    const heliHeight = heli.offsetHeight;
+    const margin = 20;
+
+    const maxX = window.innerWidth - heliWidth - margin;
+    const maxY = window.innerHeight - heliHeight - margin;
 
     const x = Math.random() * maxX;
     const y = Math.random() * maxY;
@@ -418,6 +422,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
