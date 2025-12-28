@@ -336,30 +336,38 @@ document.addEventListener("DOMContentLoaded", () => {
   let flightActive = true;
   let flightTimer;
 
-  // Start helicopter at landing position
+  // -----------------------------------------
+  // INITIAL POSITION + SMOOTH FLIGHT TRANSITION
+  // -----------------------------------------
   heli.style.transform = "translate(20px, 20px)";
+  heli.style.transition = "transform 2.2s ease-in-out";
 
-  // Auto‑start flight after initial transform is applied
+  // Auto‑start flight after initial transform applies
   setTimeout(() => {
     randomFlight();
   }, 200);
 
-  // Set initial facing direction
+  // Initial facing direction
   heli.classList.add("face-right");
 
-  // TAKEOFF ANIMATION
+  // -----------------------------------------
+  // TAKEOFF ANIMATION (when clicked)
+  // -----------------------------------------
   heli.addEventListener("click", () => {
     heli.style.pointerEvents = "none";
 
+    // Lift up
     heli.style.transition = "transform 0.8s ease-out";
     heli.style.transform = "translateY(-40px)";
 
     setTimeout(() => {
+      // Move diagonally up-right
       heli.style.transition = "transform 2.2s ease-in-out";
       heli.style.transform = "translate(200px, -200px)";
 
       setTimeout(() => {
         flightActive = true;
+        heli.style.transition = "transform 2.2s ease-in-out";
         randomFlight();
         heli.style.pointerEvents = "auto";
       }, 2200);
@@ -367,17 +375,22 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 800);
   });
 
+  // -----------------------------------------
+  // RANDOM FLIGHT LOGIC
+  // -----------------------------------------
   let lastX = 0;
 
   function randomFlight() {
     if (!flightActive) return;
 
-    const maxX = window.innerWidth - 220;
-    const maxY = window.innerHeight - 180;
+    // Full‑screen movement with safe margins
+    const maxX = window.innerWidth - 150;
+    const maxY = window.innerHeight - 150;
 
     const x = Math.random() * maxX;
     const y = Math.random() * maxY;
 
+    // Flip helicopter based on direction
     let direction = x < lastX ? -1 : 1;
 
     heli.style.transform = `translate(${x}px, ${y}px) scaleX(${direction})`;
@@ -388,7 +401,9 @@ document.addEventListener("DOMContentLoaded", () => {
     flightTimer = setTimeout(randomFlight, nextMove);
   }
 
+  // -----------------------------------------
   // LANDING AFTER 10 SECONDS
+  // -----------------------------------------
   setTimeout(() => {
     flightActive = false;
     clearTimeout(flightTimer);
@@ -404,6 +419,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
