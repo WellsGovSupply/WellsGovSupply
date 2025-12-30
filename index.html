@@ -391,33 +391,67 @@ document.addEventListener("DOMContentLoaded", () => {
   let lastX = 0;
 
   function randomFlight() {
-    if (!flightActive) return;
+  if (!flightActive) return;
+
+  const heliWidth = heli.offsetWidth;
+  const heliHeight = heli.offsetHeight;
+
+  // Safe margins on ALL sides
+  const margin = 40; // increase if you want more buffer
+
+  // Boundaries that guarantee the helicopter stays fully visible
+  const minX = margin;
+  const maxX = window.innerWidth - heliWidth - margin;
+
+  const minY = margin;
+  const maxY = window.innerHeight - heliHeight - margin;
+
+  // Random target position within safe bounds
+  const x = minX + Math.random() * (maxX - minX);
+  const y = minY + Math.random() * (maxY - minY);
+
+  // Flip helicopter based on direction
+  const direction = x < lastX ? -1 : 1;
+
+  heli.style.transform = `translate(${x}px, ${y}px) scaleX(${direction})`;
+
+  lastX = x;
+
+  const nextMove = 2000 + Math.random() * 2500;
+  flightTimer = setTimeout(randomFlight, nextMove);
+}
+  // ------------------------------------------------------
+  // Older code for random flight
+  // --------------------------------------
+  
+  //function randomFlight() {
+  //  if (!flightActive) return;
 
     // Dynamic helicopter size
-    const heliWidth = heli.offsetWidth;
-    const heliHeight = heli.offsetHeight;
+ //   const heliWidth = heli.offsetWidth;
+ //   const heliHeight = heli.offsetHeight;
 
     // Safe margins
-    const margin = 20;
+ //   const margin = 20;
 
     // Boundaries
-    const maxX = window.innerWidth - heliWidth - margin;
-    const maxY = window.innerHeight - heliHeight - margin;
+  //  const maxX = window.innerWidth - heliWidth - margin;
+  //  const maxY = window.innerHeight - heliHeight - margin;
 
     // Random target position
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
+ //   const x = Math.random() * maxX;
+  //  const y = Math.random() * maxY;
 
     // Flip helicopter based on direction
-    let direction = x < lastX ? -1 : 1;
+ //   let direction = x < lastX ? -1 : 1;
 
-    heli.style.transform = `translate(${x}px, ${y}px) scaleX(${direction})`;
+ //   heli.style.transform = `translate(${x}px, ${y}px) scaleX(${direction})`;
 
-    lastX = x;
+//    lastX = x;
 
-    const nextMove = 2000 + Math.random() * 2500;
-    flightTimer = setTimeout(randomFlight, nextMove);
-  }
+ //   const nextMove = 2000 + Math.random() * 2500;
+ //   flightTimer = setTimeout(randomFlight, nextMove);
+//  }
 
   // -----------------------------------------
   // LANDING AFTER 10 SECONDS
@@ -434,6 +468,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
